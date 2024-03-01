@@ -1,0 +1,9 @@
+name: Schwarzmarkthaendler
+version: '1.0'
+main: eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler
+api-version: '1.20'
+prefix: SH-WP
+load: POSTWORLD
+authors: [ LouiLetsPlayPro ]
+description: Schwarzmarkthändler für den Skyblock Server von Wolfpack
+website: https://wolfpack-rudel.eu
