@@ -19,7 +19,7 @@ public class breakBlock {
 
         if(Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMax() != Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMin()) return;
 
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 100, 1.5);
+        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 100, 1);
 
 
 
