@@ -1,0 +1,39 @@
+locations:
+  loc1:
+    world: flat
+    x: 0
+    y: -60
+    z: 0
+    yaw: 90 #Rotation
+    pitch: 0 #Hoch / Runter
+  loc2:
+    world: flat
+    x: 5
+    y: -60
+    z: 5
+    yaw: 180 #Rotation
+    pitch: 0 #Hoch / Runter
+  loc3:
+    world: flat
+    x: -5
+    y: -60
+    z: -5
+    yaw: -90 #Rotation
+    pitch: 0 #Hoch / Runter
+quests:
+  # Liste kann unendlich erweitert werden
+  # Material für kills ist die Entität!
+  q1:
+    name: "Bau Quest"
+    description: "Baue 10 Stein Blöcke"
+    type: "BUILD"
+    min: 100
+    points: 25
+    material: "STONE"
+  q2:
+    name: "Abbau Quest"
+    description: "Baue 10 Kohleblöcke ab"
+    type: "BREAK"
+    min: 100
+    points: 50
+    material: "COAL_BLOCK"
