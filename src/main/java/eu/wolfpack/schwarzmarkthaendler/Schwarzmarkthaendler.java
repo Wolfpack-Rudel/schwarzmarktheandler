@@ -88,6 +88,18 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         cmdManager.enableUnstableAPI("help");
 
         getLogger().info("Commands geladen");
+
+        //PAPI: https://wiki.placeholderapi.com/developers/using-placeholderapi/#__tabbed_4_2
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            /*
+             * We inform about the fact that PlaceholderAPI isn't installed and then
+             * disable this plugin to prevent issues.
+             */
+            getLogger().severe("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+
         getLogger().info(" ");
         getLogger().info("        Startup");
         getLogger().info("========================");

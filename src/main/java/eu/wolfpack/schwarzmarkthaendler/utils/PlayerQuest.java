@@ -8,14 +8,24 @@ public class PlayerQuest {
     private int points;
     private String material;
     private int max;
+    private boolean enabled;
 
-    public PlayerQuest(String questName, String type, int min, int points, String material, int max) {
+    public PlayerQuest(String questName, String type, int min, int points, String material, int max, boolean enabled) {
         this.questName = questName;
         this.type = type;
         this.min = min;
         this.points = points;
         this.material = material;
         this.max = max;
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getQuestName() {

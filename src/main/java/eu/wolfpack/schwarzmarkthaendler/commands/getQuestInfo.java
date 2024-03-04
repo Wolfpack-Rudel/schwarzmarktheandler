@@ -36,7 +36,7 @@ public class getQuestInfo extends BaseCommand {
         player.sendMessage("Points: " + Schwarzmarkthaendler.getPlayerQuest().get(target.player.getUniqueId()).getPoints());
         player.sendMessage("Material: " + Schwarzmarkthaendler.getPlayerQuest().get(target.player.getUniqueId()).getMaterial());
         player.sendMessage("Bereits Abgebaut: " + Schwarzmarkthaendler.getPlayerQuest().get(target.player.getUniqueId()).getMax());
-
+        player.sendMessage("Enabled: " + Schwarzmarkthaendler.getPlayerQuest().get(target.player.getUniqueId()).isEnabled());
     }
 
 }

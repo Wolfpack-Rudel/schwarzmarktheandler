@@ -7,3 +7,9 @@ load: POSTWORLD
 authors: [ LouiLetsPlayPro ]
 description: Schwarzmarkthändler für den Skyblock Server von Wolfpack
 website: https://wolfpack-rudel.eu
+
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE
+      required: true
