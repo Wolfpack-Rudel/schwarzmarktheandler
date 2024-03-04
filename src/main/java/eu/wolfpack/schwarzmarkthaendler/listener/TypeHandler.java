@@ -34,7 +34,8 @@ public class TypeHandler implements Listener {
                             10,
                             25,
                             "DIRT",
-                            0
+                            0,
+                            true
                     )
             );
 
