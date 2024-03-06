@@ -23,6 +23,7 @@ Durch die Integration des Schwarzmarkthandlers wird das Gameplay von Minecraft n
    1. [Allgemeines zur Configurations Datei](#allgemeines-zur-configurations-datei)
    2. [Positionen des Handlers](#positionen-des-handlers)
    3. [Quests](#quests)
+6. 
 
 ## Plugin Informationen
 - Name: Schwarzmarkthändler
@@ -143,3 +144,12 @@ Auch hier gilt, dass jederzeit eine Erweiterung durch folgenden Abschnitt mögli
     points: 25 #Die Punktzahl, welche der Spieler nach beenden der Quest erhällt
     material: "STONE" #Das Material, welcher durch die Quest bearbeitet werden soll
 ````
+
+## Command übersicht
+Alle Commands wurden mittels AIKAR erstellt, welches uns einen kleineren und Effektiveren Code zur verfügung zu stellen, welcher auch einen zuverlässigen Fehler angibt, wenn einer vorhanden ist.
+
+Commandliste:
+    
+
+## Permissions Übersicht
+Alle Permissions sind an Commands gebunden, wodruch dem Spieler keine Permissions gegeben werden müssen, um den Handler effektiv zu nutzen.

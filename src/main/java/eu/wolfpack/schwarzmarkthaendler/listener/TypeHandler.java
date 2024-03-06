@@ -1,7 +1,7 @@
 package eu.wolfpack.schwarzmarkthaendler.listener;
 
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
-import eu.wolfpack.schwarzmarkthaendler.type.breakBlock;
+import eu.wolfpack.schwarzmarkthaendler.type.*;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -55,14 +55,14 @@ public class TypeHandler implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent event) {
 
-
+        new buildBlock().Handler(event.getPlayer(), event.getBlock().getType());
 
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onCraftItem(CraftItemEvent event) {
 
-
+        new craftItem().Handler(event.getWhoClicked(), event.getRecipe().getResult().getType());
 
     }
 
@@ -70,13 +70,14 @@ public class TypeHandler implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
 
         if(event.getEntity().getKiller() == null) return;
+        new killEntity().Handler(event.getEntity().getKiller(), event.getEntityType());
 
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
 
-
+        new useItem().Handler(event.getPlayer(), event.getMaterial());
 
     }
 }
