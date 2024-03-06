@@ -1,5 +1,5 @@
 # Schwarzmarkthändler
-[![Maven Build](https://github.com/Wolfpack-Rudel/schwarzmarktheandler/actions/workflows/maven.yml/badge.svg?event=status)](https://github.com/Wolfpack-Rudel/schwarzmarktheandler/actions/workflows/maven.yml)
+[![Maven Build](https://github.com/Wolfpack-Rudel/schwarzmarktheandler/actions/workflows/maven.yml/badge.svg)](https://github.com/Wolfpack-Rudel/schwarzmarktheandler/actions/workflows/maven.yml)
 ## Übersicht
 Das Minecraft-Plugin "Schwarzmarkthandler" bietet eine spannende Ergänzung zum Spiel, indem es den Spielern die Möglichkeit gibt, täglich verschiedene Quests zu erledigen, um Punkte zu sammeln. Diese Punkte können dann gegen saisonale Items oder spezielle Punkte wie "Gold" eingetauscht werden.
 
