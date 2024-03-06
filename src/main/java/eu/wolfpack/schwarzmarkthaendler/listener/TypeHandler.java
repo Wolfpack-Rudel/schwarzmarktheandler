@@ -3,6 +3,7 @@ package eu.wolfpack.schwarzmarkthaendler.listener;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import eu.wolfpack.schwarzmarkthaendler.type.*;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -12,7 +13,6 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class TypeHandler implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
-        Map<UUID, PlayerQuest> playerQuest = new HashMap<UUID, PlayerQuest>();
+        Map<UUID, PlayerQuest> playerQuest;
         playerQuest = Schwarzmarkthaendler.getPlayerQuest();
 
         if(!(playerQuest.containsKey(event.getPlayer().getUniqueId()))){
@@ -41,7 +41,6 @@ public class TypeHandler implements Listener {
 
             Schwarzmarkthaendler.setPlayerQuest(playerQuest);
         }
-        return;
 
     }
 
@@ -62,7 +61,7 @@ public class TypeHandler implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onCraftItem(CraftItemEvent event) {
 
-        new craftItem().Handler(event.getWhoClicked(), event.getRecipe().getResult().getType());
+        new craftItem().Handler((Player) event.getView().getPlayer(), event.getRecipe().getResult().getType());
 
     }
 
