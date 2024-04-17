@@ -11,6 +11,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.Map;
@@ -77,6 +78,13 @@ public class TypeHandler implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         new useItem().Handler(event.getPlayer(), event.getMaterial());
+
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
+
+        new consumeItem().Handler(event.getPlayer(), event.getItem().getType());
 
     }
 }

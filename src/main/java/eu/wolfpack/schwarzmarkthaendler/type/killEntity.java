@@ -10,7 +10,7 @@ public class killEntity {
 
     public void Handler(Player player, EntityType type){
 
-        if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getType().equals("BREAK")) return;
+        if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getType().equals("KILL")) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMaterial().equals(type.toString())) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).isEnabled()) return;
 

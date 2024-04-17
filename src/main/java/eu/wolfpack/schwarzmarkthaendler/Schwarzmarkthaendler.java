@@ -5,10 +5,7 @@ import co.aikar.commands.CommandCompletions;
 import co.aikar.commands.PaperCommandManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import eu.wolfpack.schwarzmarkthaendler.commands.findVil;
-import eu.wolfpack.schwarzmarkthaendler.commands.getQuestInfo;
-import eu.wolfpack.schwarzmarkthaendler.commands.managePlayerPoints;
-import eu.wolfpack.schwarzmarkthaendler.commands.tpHandlerToPosition;
+import eu.wolfpack.schwarzmarkthaendler.commands.*;
 import eu.wolfpack.schwarzmarkthaendler.listener.TypeHandler;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerHit;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerTrade;
@@ -86,6 +83,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         cmdManager.registerCommand(new findVil());
         cmdManager.registerCommand(new getQuestInfo());
         cmdManager.registerCommand(new managePlayerPoints());
+        cmdManager.registerCommand(new setPlayerQuest());
 
         cmdManager.enableUnstableAPI("help");
 

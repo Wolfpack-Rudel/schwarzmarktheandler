@@ -38,8 +38,6 @@ public class breakBlock {
 
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);
 
-        Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);
-
         player.sendMessage("BREAK");
 
 
