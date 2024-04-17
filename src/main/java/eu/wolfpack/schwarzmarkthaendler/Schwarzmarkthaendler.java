@@ -3,10 +3,9 @@ package eu.wolfpack.schwarzmarkthaendler;
 import co.aikar.commands.BukkitCommandCompletionContext;
 import co.aikar.commands.CommandCompletions;
 import co.aikar.commands.PaperCommandManager;
-import eu.wolfpack.schwarzmarkthaendler.commands.findVil;
-import eu.wolfpack.schwarzmarkthaendler.commands.getQuestInfo;
-import eu.wolfpack.schwarzmarkthaendler.commands.managePlayerPoints;
-import eu.wolfpack.schwarzmarkthaendler.commands.tpHandlerToPosition;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import eu.wolfpack.schwarzmarkthaendler.commands.*;
 import eu.wolfpack.schwarzmarkthaendler.listener.TypeHandler;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerHit;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerTrade;
@@ -14,13 +13,13 @@ import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.util.*;
 
@@ -50,7 +49,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getLogger().info("========================");
         getLogger().info("   Schwarzmarkthandler");
 
-        dataFile = new File(getDataFolder(), "playerPoints.json");
+        dataFile = new File(getDataFolder(), "playerPoints.yml");
         loadPlayerPoints();
 
         getLogger().info(" ");
@@ -84,6 +83,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         cmdManager.registerCommand(new findVil());
         cmdManager.registerCommand(new getQuestInfo());
         cmdManager.registerCommand(new managePlayerPoints());
+        cmdManager.registerCommand(new setPlayerQuest());
 
         cmdManager.enableUnstableAPI("help");
 
@@ -140,8 +140,9 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
     }
 
     public static void savePlayerPoints() {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(dataFile.toPath()))) {
-            outputStream.writeObject(playerPoints);
+        try (Writer writer = new FileWriter(dataFile)) {
+            Gson gson = new Gson();
+            gson.toJson(playerPoints, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,10 +150,13 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
 
     public static void loadPlayerPoints() {
         if (dataFile.exists()) {
-            try (ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(dataFile.toPath()))) {
-                playerPoints = (Map<UUID, Integer>) inputStream.readObject();
-            } catch (IOException | ClassNotFoundException e) {
+            try (Reader reader = new FileReader(dataFile)) {
+                Gson gson = new Gson();
+                Type type = new TypeToken<Map<UUID, Integer>>() {}.getType();
+                playerPoints = gson.fromJson(reader, type);
+            } catch (IOException e) {
                 e.printStackTrace();
+                playerPoints = new HashMap<>();
             }
         }
     }

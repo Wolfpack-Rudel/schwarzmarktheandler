@@ -31,6 +31,11 @@ public class breakBlock {
                 100,
                 60);
 
+        Schwarzmarkthaendler.getPlayerPoints().put(
+                player.getUniqueId(),
+                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()).intValue() +
+                        Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getPoints());
+
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);
 
         player.sendMessage("BREAK");
