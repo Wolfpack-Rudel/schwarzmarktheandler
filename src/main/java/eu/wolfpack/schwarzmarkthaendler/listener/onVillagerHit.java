@@ -1,5 +1,6 @@
 package eu.wolfpack.schwarzmarkthaendler.listener;
 
+import eu.wolfpack.schwarzmarkthaendler.Inventory.choseQuestOreShop;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,8 @@ public class onVillagerHit implements Listener {
         if(!event.getEntity().getScoreboardTags().contains("customVillager-Schwarzmarkthändler")) return;
 
         event.getDamager().sendMessage("Schwarzmarkthändler - Hit - ObenInfEvent");
+
+        new choseQuestOreShop().openInv((Player) event.getDamager());
 
         //((Player) event.getDamager()).openInventory();
         event.setCancelled(true);

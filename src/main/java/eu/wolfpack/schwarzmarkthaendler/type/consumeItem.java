@@ -35,7 +35,7 @@ public class consumeItem {
 
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);
 
-        player.sendMessage("USEITEM");
+        player.sendMessage("CONSUME");
 
 
     }

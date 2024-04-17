@@ -19,6 +19,8 @@ import java.util.UUID;
 
 public class TypeHandler implements Listener {
 
+    //Temporäres Quest Adden - muss entfernt werden nach Dev Arbeiten
+
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
@@ -45,12 +47,16 @@ public class TypeHandler implements Listener {
 
     }
 
+    //BREAK Type
+
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
 
         new breakBlock().Handler(event.getPlayer(), event.getBlock().getType());
 
     }
+
+    //BUILD Type
 
     @EventHandler(ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent event) {
@@ -59,12 +65,16 @@ public class TypeHandler implements Listener {
 
     }
 
+    //CRAFT Type
+
     @EventHandler(ignoreCancelled = true)
     public void onCraftItem(CraftItemEvent event) {
 
         new craftItem().Handler((Player) event.getView().getPlayer(), event.getRecipe().getResult().getType());
 
     }
+
+    //KILL TYPE
 
     @EventHandler(ignoreCancelled = true)
     public void onEntityDeath(EntityDeathEvent event) {
@@ -74,12 +84,16 @@ public class TypeHandler implements Listener {
 
     }
 
+    //USEITEM TYPE
+
     @EventHandler(ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         new useItem().Handler(event.getPlayer(), event.getMaterial());
 
     }
+
+    //CONSUME TYPE
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
