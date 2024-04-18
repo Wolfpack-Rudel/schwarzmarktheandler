@@ -6,10 +6,7 @@ import co.aikar.commands.PaperCommandManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import eu.wolfpack.schwarzmarkthaendler.commands.*;
-import eu.wolfpack.schwarzmarkthaendler.listener.TypeHandler;
-import eu.wolfpack.schwarzmarkthaendler.listener.noVillagerMove;
-import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerHit;
-import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerTrade;
+import eu.wolfpack.schwarzmarkthaendler.listener.*;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -119,6 +116,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onVillagerTrade(), this);
         getServer().getPluginManager().registerEvents(new TypeHandler(), this);
         getServer().getPluginManager().registerEvents(new noVillagerMove(), this);
+        getServer().getPluginManager().registerEvents(new inventoryInteract(), this);
 
     }
 

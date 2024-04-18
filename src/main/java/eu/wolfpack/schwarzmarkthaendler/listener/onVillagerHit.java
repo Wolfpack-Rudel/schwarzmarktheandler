@@ -5,8 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.Inventory;
 
 import static eu.wolfpack.schwarzmarkthaendler.Enums.Inventorys.ChoseQuestOreShop;
+import static eu.wolfpack.schwarzmarkthaendler.Enums.Items.*;
 
 public class onVillagerHit implements Listener {
 
@@ -21,7 +23,17 @@ public class onVillagerHit implements Listener {
 
         event.getDamager().sendMessage("Schwarzmarkthändler - Hit - ObenInfEvent");
 
-        ((Player) event.getDamager()).openInventory(ChoseQuestOreShop.getInv());
+        Inventory inv = ChoseQuestOreShop.getInv();
+        for (int i = 0; i < ChoseQuestOreShop.getSize()-1; i++) {
+            inv.setItem(i, PLACEHOLDER.getItem());
+        }
+
+        inv.setItem(11, QUEST.getItem());
+        inv.setItem(15, SHOP.getItem());
+        inv.setItem(26, BACK.getItem());
+
+
+        ((Player) event.getDamager()).openInventory(inv);
         event.setCancelled(true);
 
     }

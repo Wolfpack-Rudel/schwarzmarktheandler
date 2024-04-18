@@ -8,7 +8,7 @@ import static org.bukkit.Bukkit.createInventory;
 
 public enum Inventorys {
 
-    ChoseQuestOreShop(null, 9, "Chose"),
+    ChoseQuestOreShop(null, 27, "Chose"),
     QuestMenu(null, 9, "Quest"),
     ShopMenu(null, 9, "Shop");
 
