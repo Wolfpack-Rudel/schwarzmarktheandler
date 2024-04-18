@@ -13,8 +13,6 @@ import org.bukkit.entity.Player;
 import java.util.Map;
 import java.util.UUID;
 
-import static eu.wolfpack.schwarzmarkthaendler.villager.customVillager.SCHWARZMARKTHANDLER;
-
 @CommandAlias("spq|setPlayerQuest")
 @Description("Lege die laufende Quest eines Spielers fest")
 @CommandPermission("schwarzmarkthaendler.spq")

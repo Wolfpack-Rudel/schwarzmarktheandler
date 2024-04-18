@@ -1,11 +1,12 @@
 package eu.wolfpack.schwarzmarkthaendler.listener;
 
-import eu.wolfpack.schwarzmarkthaendler.Inventory.choseQuestOreShop;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
+import static eu.wolfpack.schwarzmarkthaendler.Enums.Inventorys.ChoseQuestOreShop;
 
 public class onVillagerHit implements Listener {
 
@@ -20,9 +21,7 @@ public class onVillagerHit implements Listener {
 
         event.getDamager().sendMessage("Schwarzmarkthändler - Hit - ObenInfEvent");
 
-        new choseQuestOreShop().openInv((Player) event.getDamager());
-
-        //((Player) event.getDamager()).openInventory();
+        ((Player) event.getDamager()).openInventory(ChoseQuestOreShop.getInv());
         event.setCancelled(true);
 
     }

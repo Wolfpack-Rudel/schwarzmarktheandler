@@ -7,23 +7,21 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import eu.wolfpack.schwarzmarkthaendler.commands.*;
 import eu.wolfpack.schwarzmarkthaendler.listener.TypeHandler;
+import eu.wolfpack.schwarzmarkthaendler.listener.noVillagerMove;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerHit;
 import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerTrade;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
 import java.util.*;
 
-import static eu.wolfpack.schwarzmarkthaendler.villager.customVillager.SCHWARZMARKTHANDLER;
+import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 public final class Schwarzmarkthaendler extends JavaPlugin {
 
@@ -120,6 +118,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onVillagerHit(), this);
         getServer().getPluginManager().registerEvents(new onVillagerTrade(), this);
         getServer().getPluginManager().registerEvents(new TypeHandler(), this);
+        getServer().getPluginManager().registerEvents(new noVillagerMove(), this);
 
     }
 

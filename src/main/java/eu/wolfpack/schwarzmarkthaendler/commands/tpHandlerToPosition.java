@@ -6,7 +6,7 @@ import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import static eu.wolfpack.schwarzmarkthaendler.villager.customVillager.SCHWARZMARKTHANDLER;
+import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 @CommandAlias("tphtp|teleporthandler")
 @Description("Teleportiere den Handler zu einer Ausgewählten Position aus der Config")

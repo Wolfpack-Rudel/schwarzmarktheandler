@@ -3,9 +3,8 @@ package eu.wolfpack.schwarzmarkthaendler.commands;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import org.bukkit.entity.Player;
-import org.bukkit.Location;
 
-import static eu.wolfpack.schwarzmarkthaendler.villager.customVillager.SCHWARZMARKTHANDLER;
+import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 @CommandAlias("sh|schowhandler")
 @Description("Lasse dir die Position des Handlers ausgeben")
