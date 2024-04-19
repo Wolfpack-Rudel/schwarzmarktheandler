@@ -2,12 +2,14 @@ package eu.wolfpack.schwarzmarkthaendler.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class ItemBuilder {
 
@@ -45,6 +47,16 @@ public class ItemBuilder {
     }
     public ItemBuilder addItemFlags(ItemFlag... s){
         itemMeta.addItemFlags(s);
+        return this;
+    }
+
+    public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
+        itemStack.addEnchantments(enchantments);
+        return this;
+    }
+
+    public ItemBuilder setCustomModelData(int i){
+        itemMeta.setCustomModelData(i);
         return this;
     }
 

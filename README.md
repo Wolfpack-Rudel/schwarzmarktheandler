@@ -19,6 +19,7 @@ Durch die Integration des Schwarzmarkthandlers wird das Gameplay von Minecraft n
    3. [CRAFT](#craft)
    4. [KILL](#kill)
    5. [USE](#use)
+   6. [CONSUME](#consume)
 5. [Configuration](#configuration)
    1. [Allgemeines zur Configurations Datei](#allgemeines-zur-configurations-datei)
    2. [Positionen des Handlers](#positionen-des-handlers)
@@ -59,6 +60,9 @@ Dieser TYPE dient dazu, alle Block Abbau Ereignisse zu verarbeiten und in einer 
 
 ### USE
 
+> Coming Soon
+
+### CONSUME
 > Coming Soon
 
 ## Configuration

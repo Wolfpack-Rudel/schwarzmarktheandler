@@ -6,24 +6,20 @@ import co.aikar.commands.PaperCommandManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import eu.wolfpack.schwarzmarkthaendler.commands.*;
-import eu.wolfpack.schwarzmarkthaendler.listener.TypeHandler;
-import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerHit;
-import eu.wolfpack.schwarzmarkthaendler.listener.onVillagerTrade;
+import eu.wolfpack.schwarzmarkthaendler.listener.*;
+import eu.wolfpack.schwarzmarkthaendler.utils.PlayQuests;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
 import java.util.*;
 
-import static eu.wolfpack.schwarzmarkthaendler.villager.customVillager.SCHWARZMARKTHANDLER;
+import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 public final class Schwarzmarkthaendler extends JavaPlugin {
 
@@ -34,6 +30,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
     private static File dataFile;
     private static Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
     private static Map<UUID, PlayerQuest> playerQuest = new HashMap<UUID, PlayerQuest>();
+    private List temp;
 
     @Override
     public void onEnable() {
@@ -64,7 +61,44 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getLogger().info(" ");
         getLogger().info("Lade Commands");
 
-        //CommandManager
+        temp = List.of(getConfig().getConfigurationSection("quest").getKeys(false).toArray());
+
+        String quest1 = getRand();
+        PlayerQuest q1 = new PlayerQuest(
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
+                0,
+                true
+        );
+
+        String quest2 = getRand();
+        PlayerQuest q2 = new PlayerQuest(
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
+                0,
+                true
+        );
+
+        String quest3 = getRand();
+        PlayerQuest q3 = new PlayerQuest(
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
+                0,
+                true
+        );
+
+        PlayQuests questMaster = new PlayQuests(q1, q2, q3);
+
+                //CommandManager
 
         cmdCompletion.registerAsyncCompletion("tppoints", c -> {
             CommandSender player = c.getSender();
@@ -120,6 +154,8 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onVillagerHit(), this);
         getServer().getPluginManager().registerEvents(new onVillagerTrade(), this);
         getServer().getPluginManager().registerEvents(new TypeHandler(), this);
+        getServer().getPluginManager().registerEvents(new noVillagerMove(), this);
+        getServer().getPluginManager().registerEvents(new inventoryInteract(), this);
 
     }
 
@@ -167,5 +203,16 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
 
     public static void setPlayerQuest(Map<UUID, PlayerQuest> playerQuest) {
         Schwarzmarkthaendler.playerQuest = playerQuest;
+    }
+
+    private String getRand(){
+        String random = "" + Objects.requireNonNull(getConfig().getConfigurationSection("quests")).getKeys(false).toArray()[(int)( Math.random() * Objects.requireNonNull(getConfig().getConfigurationSection("quests")).getKeys(false).size())];
+
+        if(!temp.contains(random)){
+            return getRand();
+        }
+
+        temp.remove(random);
+        return "quests." + random;
     }
 }

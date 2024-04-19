@@ -29,11 +29,32 @@ quests:
     type: "BUILD"
     min: 100
     points: 25
-    material: "STONE"
+    material: "DIRT"
   q2:
     name: "Abbau Quest"
     description: "Baue 10 Kohleblöcke ab"
     type: "BREAK"
     min: 100
     points: 50
-    material: "COAL_BLOCK"
+    material: "DIRT"
+  q3:
+    name: "Iss Quest"
+    description: "Esse 10 Brote"
+    type: "CONSUME"
+    min: 100
+    points: 50
+    material: "BREAD"
+  q4:
+    name: "Useitem Quest"
+    description: "Benutze 10 mal eine Schaufel"
+    type: "USEITEM"
+    min: 100
+    points: 50
+    material: "NETHERITE_SHOVEL"
+  q5:
+    name: "Kill Quest"
+    description: "Töte 10 Schweine"
+    type: "KILL"
+    min: 100
+    points: 50
+    material: "PIG"
