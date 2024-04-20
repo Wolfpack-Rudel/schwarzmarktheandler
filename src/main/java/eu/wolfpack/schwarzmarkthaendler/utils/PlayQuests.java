@@ -1,10 +1,13 @@
 package eu.wolfpack.schwarzmarkthaendler.utils;
 
+import java.util.UUID;
+
 public class PlayQuests {
 
     private PlayerQuest pq1;
     private PlayerQuest pq2;
     private PlayerQuest pq3;
+
 
     public PlayQuests(PlayerQuest pq1, PlayerQuest pq2, PlayerQuest pq3) {
         this.pq1 = pq1;
@@ -35,4 +38,5 @@ public class PlayQuests {
     public void setPq3(PlayerQuest pq3) {
         this.pq3 = pq3;
     }
+
 }

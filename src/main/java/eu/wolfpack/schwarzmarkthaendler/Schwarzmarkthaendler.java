@@ -30,6 +30,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
     private static File dataFile;
     private static Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
     private static Map<UUID, PlayerQuest> playerQuest = new HashMap<UUID, PlayerQuest>();
+    private static Map<UUID, PlayQuests> playQuestsMap = new HashMap<>();
     private List temp;
 
     @Override
@@ -61,7 +62,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getLogger().info(" ");
         getLogger().info("Lade Commands");
 
-        temp = List.of(getConfig().getConfigurationSection("quest").getKeys(false).toArray());
+        temp = List.of(getConfig().getConfigurationSection("quests").getKeys(false).toArray());
 
         String quest1 = getRand();
         PlayerQuest q1 = new PlayerQuest(
@@ -97,6 +98,8 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         );
 
         PlayQuests questMaster = new PlayQuests(q1, q2, q3);
+
+        playQuestsMap.put(UUID.nameUUIDFromBytes("MASTER".getBytes()), questMaster);
 
                 //CommandManager
 
@@ -212,7 +215,15 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
             return getRand();
         }
 
-        temp.remove(random);
+        //temp.remove(random);
         return "quests." + random;
+    }
+
+    public static Map<UUID, PlayQuests> getPlayQuestsMap() {
+        return playQuestsMap;
+    }
+
+    public static void setPlayQuests(Map<UUID, PlayQuests> playQuestsMap) {
+        Schwarzmarkthaendler.playQuestsMap = playQuestsMap;
     }
 }

@@ -2,6 +2,7 @@ package eu.wolfpack.schwarzmarkthaendler.listener;
 
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import eu.wolfpack.schwarzmarkthaendler.type.*;
+import eu.wolfpack.schwarzmarkthaendler.utils.PlayQuests;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,25 +25,14 @@ public class TypeHandler implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
-        Map<UUID, PlayerQuest> playerQuest;
-        playerQuest = Schwarzmarkthaendler.getPlayerQuest();
+        Map<UUID, PlayQuests> playQuest;
+        playQuest = Schwarzmarkthaendler.getPlayQuestsMap();
 
-        if(!(playerQuest.containsKey(event.getPlayer().getUniqueId()))){
+        if(!(playQuest.containsKey(event.getPlayer().getUniqueId()))){
 
-            playerQuest.put(
-                    event.getPlayer().getUniqueId(),
-                    new PlayerQuest(
-                            "q1",
-                            "BREAK",
-                            10,
-                            25,
-                            "DIRT",
-                            0,
-                            true
-                    )
-            );
+            playQuest.put(event.getPlayer().getUniqueId(), playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())));
 
-            Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+            Schwarzmarkthaendler.setPlayQuests(playQuest);
         }
 
     }

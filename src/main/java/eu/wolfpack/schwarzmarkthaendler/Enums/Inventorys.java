@@ -9,7 +9,7 @@ import static org.bukkit.Bukkit.createInventory;
 public enum Inventorys {
 
     ChoseQuestOreShop(null, 27, "Chose"),
-    QuestMenu(null, 9, "Quest"),
+    QuestMenu(null, 27, "Quest"),
     ShopMenu(null, 9, "Shop");
 
     private final InventoryHolder owner;
