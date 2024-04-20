@@ -1,12 +1,16 @@
 package eu.wolfpack.schwarzmarkthaendler.utils;
 
+import com.google.common.collect.Multimap;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.material.MaterialData;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -25,10 +29,17 @@ public class ItemBuilder {
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', s));
         return this;
     }
+
     public ItemBuilder setLocalizedName(String s){
         itemMeta.setLocalizedName(s);
         return this;
     }
+
+    public ItemBuilder setAttribut(Multimap<Attribute, AttributeModifier> attribut){
+        itemMeta.setAttributeModifiers(attribut);
+        return this;
+    }
+
     public ItemBuilder setLore(String... s){
 
         itemMeta.setLore(Arrays.asList(s));
@@ -45,6 +56,7 @@ public class ItemBuilder {
         itemMeta.setUnbreakable(s);
         return this;
     }
+
     public ItemBuilder addItemFlags(ItemFlag... s){
         itemMeta.addItemFlags(s);
         return this;
@@ -67,6 +79,7 @@ public class ItemBuilder {
                 ", itemStack=" + itemStack +
                 '}';
     }
+
     public ItemStack build(){
         itemStack.setItemMeta(itemMeta);
         return itemStack;
