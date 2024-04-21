@@ -6,7 +6,6 @@ import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -18,7 +17,7 @@ public class managePlayerPoints extends BaseCommand {
     @Subcommand("add|a")
     public void mMPa(Player player, OnlinePlayer target, Integer p){
 
-        Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
+        Map<UUID, Integer> playerPoints;
 
         playerPoints = Schwarzmarkthaendler.getPlayerPoints();
 
@@ -37,7 +36,7 @@ public class managePlayerPoints extends BaseCommand {
 
     @Subcommand("set|s")
     public void mMPs(Player player, OnlinePlayer target, Integer p){
-        Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
+        Map<UUID, Integer> playerPoints;
 
         playerPoints = Schwarzmarkthaendler.getPlayerPoints();
 
@@ -55,7 +54,7 @@ public class managePlayerPoints extends BaseCommand {
 
     @Subcommand("remove|r")
     public void mMPr(Player player, OnlinePlayer target, Integer p){
-        Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
+        Map<UUID, Integer> playerPoints;
 
         playerPoints = Schwarzmarkthaendler.getPlayerPoints();
 
@@ -75,7 +74,7 @@ public class managePlayerPoints extends BaseCommand {
     @Subcommand("get|g")
     public void mMPr(Player player, OnlinePlayer target){
 
-        Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
+        Map<UUID, Integer> playerPoints;
 
         playerPoints = Schwarzmarkthaendler.getPlayerPoints();
 

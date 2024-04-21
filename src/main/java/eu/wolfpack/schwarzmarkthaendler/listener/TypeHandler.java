@@ -3,7 +3,6 @@ package eu.wolfpack.schwarzmarkthaendler.listener;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import eu.wolfpack.schwarzmarkthaendler.type.*;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayQuests;
-import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

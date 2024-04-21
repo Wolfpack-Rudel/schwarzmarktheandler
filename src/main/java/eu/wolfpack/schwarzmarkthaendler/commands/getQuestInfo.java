@@ -6,6 +6,8 @@ import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 @CommandAlias("gqi|getQuestInfo")
 @Description("Lasse dir die Info zu einer Quest anzeigen")
 @CommandPermission("schwarzmarkthaendler.qi")
@@ -14,8 +16,8 @@ public class getQuestInfo extends BaseCommand {
     @Subcommand("config|c")
     @CommandCompletion("@questslist")
     public void onQL(Player player, String quest){
-        if(Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("quests").getKeys(false).contains(quest)){
-            player.sendMessage("Erfolgreich: " + Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("quests." + quest).getKeys(false).toString());
+        if(Objects.requireNonNull(Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("quests")).getKeys(false).contains(quest)){
+            player.sendMessage("Erfolgreich: " + Objects.requireNonNull(Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("quests." + quest)).getKeys(false));
             player.sendMessage("Name: " + Schwarzmarkthaendler.getInstance().getConfig().get("quests." + quest + ".name"));
             player.sendMessage("Description: " + Schwarzmarkthaendler.getInstance().getConfig().get("quests." + quest + ".description"));
             player.sendMessage("Type: " + Schwarzmarkthaendler.getInstance().getConfig().get("quests." + quest + ".type"));

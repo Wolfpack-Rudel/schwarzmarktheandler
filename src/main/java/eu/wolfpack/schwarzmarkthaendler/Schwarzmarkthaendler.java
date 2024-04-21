@@ -28,10 +28,10 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
     }
     private static Schwarzmarkthaendler instance;
     private static File dataFile;
-    private static Map<UUID, Integer> playerPoints = new HashMap<UUID, Integer>();
-    private static Map<UUID, PlayerQuest> playerQuest = new HashMap<UUID, PlayerQuest>();
+    private static Map<UUID, Integer> playerPoints = new HashMap<>();
+    private static Map<UUID, PlayerQuest> playerQuest = new HashMap<>();
     private static Map<UUID, PlayQuests> playQuestsMap = new HashMap<>();
-    private List temp;
+    private static final Map<String, Integer> temp = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -62,7 +62,9 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         getLogger().info(" ");
         getLogger().info("Lade Commands");
 
-        temp = List.of(getConfig().getConfigurationSection("quests").getKeys(false).toArray());
+        for (int i = 0; i < getConfig().getConfigurationSection("quests").getKeys(false).size(); i++) {
+            temp.put((String) getConfig().getConfigurationSection("quests").getKeys(false).toArray()[i], i);
+        }
 
         String quest1 = getRand();
         PlayerQuest q1 = new PlayerQuest(
@@ -72,29 +74,29 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
                 0,
-                true
+                false
         );
 
         String quest2 = getRand();
         PlayerQuest q2 = new PlayerQuest(
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getString("type"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getInt("min"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getInt("points"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getString("material"),
                 0,
-                true
+                false
         );
 
         String quest3 = getRand();
         PlayerQuest q3 = new PlayerQuest(
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
-                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("material"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getString("type"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getInt("min"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getInt("points"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getString("material"),
                 0,
-                true
+                false
         );
 
         PlayQuests questMaster = new PlayQuests(q1, q2, q3);
@@ -209,13 +211,15 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
     }
 
     private String getRand(){
+        System.out.println(Objects.requireNonNull(getConfig().getConfigurationSection("quests")).getKeys(false).size());
         String random = "" + Objects.requireNonNull(getConfig().getConfigurationSection("quests")).getKeys(false).toArray()[(int)( Math.random() * Objects.requireNonNull(getConfig().getConfigurationSection("quests")).getKeys(false).size())];
+        System.out.println(random);
 
-        if(!temp.contains(random)){
+        if(!temp.containsKey(random)){
             return getRand();
         }
 
-        //temp.remove(random);
+        temp.remove(random);
         return "quests." + random;
     }
 

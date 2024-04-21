@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import static org.bukkit.Material.*;
 
 public enum Items {
-    PLACEHOLDER(GRAY_STAINED_GLASS_PANE,  ChatColor.translateAlternateColorCodes('&', "&l "), 10100, " ", " "),
+    PLACEHOLDER(LIGHT_GRAY_STAINED_GLASS_PANE,  ChatColor.translateAlternateColorCodes('&', "&l "), 10100, " ", " "),
     SHOP(ORANGE_CONCRETE, ChatColor.translateAlternateColorCodes('&', "&b&lShop"), 10101),
     QUEST(YELLOW_CONCRETE, ChatColor.translateAlternateColorCodes('&', "&b&lQuests"), 10102),
     BACK(PAPER, ChatColor.translateAlternateColorCodes('&', "&c&lZurück"), 10003),
@@ -18,11 +18,12 @@ public enum Items {
     COMPLETE_80(LIME_STAINED_GLASS_PANE, "80%", 10113),
     COMPLETE_100(LIME_STAINED_GLASS_PANE, "100%", 10114),
     INCOMPLETE_20(RED_STAINED_GLASS_PANE, "20%", 10120),
-    INCOMPLETE_40(RED_STAINED_GLASS_PANE, "40%", 10120),
-    INCOMPLETE_60(RED_STAINED_GLASS_PANE, "60%", 10120),
-    INCOMPLETE_80(RED_STAINED_GLASS_PANE, "80%", 10120),
-    INCOMPLETE_100(RED_STAINED_GLASS_PANE, "100%", 10120),
-
+    INCOMPLETE_40(RED_STAINED_GLASS_PANE, "40%", 10121),
+    INCOMPLETE_60(RED_STAINED_GLASS_PANE, "60%", 10122),
+    INCOMPLETE_80(RED_STAINED_GLASS_PANE, "80%", 10123),
+    INCOMPLETE_100(RED_STAINED_GLASS_PANE, "100%", 10124),
+    ENABLED(LIME_DYE, "Aktiviert", 10103),
+    DISABLED(GRAY_DYE, "Deaktiviert", 10104)
 
     ;
 

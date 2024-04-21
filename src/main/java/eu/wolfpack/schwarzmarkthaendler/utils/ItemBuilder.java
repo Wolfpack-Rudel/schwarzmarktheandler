@@ -10,15 +10,13 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.material.MaterialData;
 
 import java.util.Arrays;
-import java.util.Map;
 
 public class ItemBuilder {
 
-    private ItemMeta itemMeta;
-    private ItemStack itemStack;
+    private final ItemMeta itemMeta;
+    private final ItemStack itemStack;
 
     public ItemBuilder(Material mat){
         itemStack = new ItemStack(mat);
@@ -59,11 +57,6 @@ public class ItemBuilder {
 
     public ItemBuilder addItemFlags(ItemFlag... s){
         itemMeta.addItemFlags(s);
-        return this;
-    }
-
-    public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
-        itemStack.addEnchantments(enchantments);
         return this;
     }
 

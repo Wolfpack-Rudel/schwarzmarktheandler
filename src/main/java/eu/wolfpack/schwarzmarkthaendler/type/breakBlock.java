@@ -1,17 +1,15 @@
 package eu.wolfpack.schwarzmarkthaendler.type;
 
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
-import net.kyori.adventure.text.Component;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 public class breakBlock {
 
     public void Handler(Player player, Material material){
 
+        if(Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()) == null) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getType().equals("BREAK")) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMaterial().equals(material.toString())) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).isEnabled()) return;
@@ -33,7 +31,7 @@ public class breakBlock {
 
         Schwarzmarkthaendler.getPlayerPoints().put(
                 player.getUniqueId(),
-                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()).intValue() +
+                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()) +
                         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getPoints());
 
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);

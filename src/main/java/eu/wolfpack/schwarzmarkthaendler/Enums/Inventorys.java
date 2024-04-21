@@ -30,7 +30,7 @@ public enum Inventorys {
         return size;
     }
 
-    public String getTitle() {
+    public @NotNull String getTitle() {
         return title;
     }
 
