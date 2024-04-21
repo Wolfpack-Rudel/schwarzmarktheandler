@@ -212,11 +212,28 @@ public class inventoryInteract implements Listener {
 
                     PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
                     PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                    PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+
+                    if(quest.getQuestName().equals(sq1.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(1, ENABLED.getItem());
+
+                        return;
+                    }
+
 
                     if(quest.getQuestName().equals(sq2.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
@@ -232,7 +249,7 @@ public class inventoryInteract implements Listener {
                     if(quest.getQuestName().equals(sq3.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
@@ -264,11 +281,28 @@ public class inventoryInteract implements Listener {
 
                     PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
                     PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                    PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+
+                    if(quest.getQuestName().equals(sq2.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(10, ENABLED.getItem());
+
+                        return;
+                    }
+
 
                     if(quest.getQuestName().equals(sq1.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
@@ -284,7 +318,7 @@ public class inventoryInteract implements Listener {
                     if(quest.getQuestName().equals(sq3.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
@@ -316,11 +350,27 @@ public class inventoryInteract implements Listener {
 
                     PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
                     PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+                    PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+
+                    if(quest.getQuestName().equals(sq3.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(19, ENABLED.getItem());
+
+                        return;
+                    }
 
                     if(quest.getQuestName().equals(sq2.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
@@ -336,7 +386,7 @@ public class inventoryInteract implements Listener {
                     if(quest.getQuestName().equals(sq1.getQuestName())){
                         quest.setEnabled(false);
                         playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
-                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
                         if(quest.getMin() == quest.getMax()) return;
                         quest.setEnabled(true);
 
