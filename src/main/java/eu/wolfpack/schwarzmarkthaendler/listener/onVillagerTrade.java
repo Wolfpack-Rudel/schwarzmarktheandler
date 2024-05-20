@@ -147,6 +147,10 @@ public class onVillagerTrade implements Listener {
             int quest3persentage= playQuest.getPq3().getMax();
             if(playQuest.getPq3().getMax()!=0) quest3persentage = (playQuest.getPq3().getMax() * 100) / playQuest.getPq3().getMin();
 
+            quest1persentage = quest1persentage + 1;
+            quest2persentage = quest2persentage + 1;
+            quest3persentage = quest3persentage + 1;
+
             if(20 < quest1persentage){
                 inv.setItem(3, COMPLETE_20.getItem());
             }else{
