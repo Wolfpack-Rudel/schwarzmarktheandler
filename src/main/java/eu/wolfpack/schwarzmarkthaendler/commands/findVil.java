@@ -20,7 +20,7 @@ public class findVil extends BaseCommand {
             return;
         }
 
-        player.sendMessage("Position: " + Objects.requireNonNull(SCHWARZMARKTHANDLER.getPos()).toString());
+        player.sendMessage("Position: " + Objects.requireNonNull(SCHWARZMARKTHANDLER.getPos()));
 
     }
 

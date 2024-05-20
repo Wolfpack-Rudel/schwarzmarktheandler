@@ -19,10 +19,6 @@ public enum customVillager {
         "Schwarzmarkthändler",
             null,
             makeArmorSet(
-                    null,
-                    null,
-                    null,
-                    null
             )
     );
 
@@ -78,12 +74,12 @@ public enum customVillager {
         spawn(new Location(world, x,y,z, yaw, pitch));
     }
 
-    private static ItemStack[] makeArmorSet(ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots) {
+    private static ItemStack[] makeArmorSet() {
         ItemStack[] armor = new ItemStack[4];
-        armor[3] = helmet;
-        armor[2] = chestplate;
-        armor[1] = leggings;
-        armor[0] = boots;
+        armor[3] = null;
+        armor[2] = null;
+        armor[1] = null;
+        armor[0] = null;
         return armor;
     }
 

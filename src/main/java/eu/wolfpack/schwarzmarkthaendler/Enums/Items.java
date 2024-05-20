@@ -8,10 +8,10 @@ import org.bukkit.inventory.ItemStack;
 import static org.bukkit.Material.*;
 
 public enum Items {
-    PLACEHOLDER(LIGHT_GRAY_STAINED_GLASS_PANE,  ChatColor.translateAlternateColorCodes('&', "&l "), 10100, " ", " "),
-    SHOP(ORANGE_CONCRETE, ChatColor.translateAlternateColorCodes('&', "&b&lShop"), 10101),
-    QUEST(YELLOW_CONCRETE, ChatColor.translateAlternateColorCodes('&', "&b&lQuests"), 10102),
-    BACK(PAPER, ChatColor.translateAlternateColorCodes('&', "&c&lZurück"), 10003),
+    PLACEHOLDER(LIGHT_GRAY_STAINED_GLASS_PANE,  color( "&l "), 10100, " ", " "),
+    SHOP(ORANGE_CONCRETE, color("&b&lShop"), 10101),
+    QUEST(YELLOW_CONCRETE, color("&b&lQuests"), 10102),
+    BACK(PAPER, color("&c&lZurück"), 10003),
     COMPLETE_20(LIME_STAINED_GLASS_PANE, "20%", 10110),
     COMPLETE_40(LIME_STAINED_GLASS_PANE, "40%", 10111),
     COMPLETE_60(LIME_STAINED_GLASS_PANE, "60%", 10112),
@@ -78,5 +78,9 @@ public enum Items {
 
     public ItemBuilder getItemBuilder(){
         return new ItemBuilder(this.material).setDisplayname(this.name).setLore(this.lore).setCustomModelData(this.identifyer);
+    }
+
+    private static String color(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
     }
 }

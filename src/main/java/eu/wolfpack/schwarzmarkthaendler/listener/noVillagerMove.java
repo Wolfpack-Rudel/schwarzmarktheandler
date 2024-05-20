@@ -15,7 +15,6 @@ public class noVillagerMove implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onPlayerFish(PlayerFishEvent event) {
 
-        Player player = event.getPlayer();
         if(!(event.getCaught() instanceof Villager)) return;
         if(!event.getCaught().getName().equals("Schwarzmarkthändler")) return;
 

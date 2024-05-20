@@ -33,7 +33,7 @@ public class inventoryInteract implements Listener {
             } else if (event.getCurrentItem().equals(QUEST.getItem())) {
                 event.setCancelled(true);
                 Inventory inv = QuestMenu.getInv();
-                for (int i = 0; i < QuestMenu.getSize()-1; i++) {
+                for (int i = 0; i < QuestMenu.getSize(); i++) {
                     inv.setItem(i, PLACEHOLDER.getItem());
                 }
 
