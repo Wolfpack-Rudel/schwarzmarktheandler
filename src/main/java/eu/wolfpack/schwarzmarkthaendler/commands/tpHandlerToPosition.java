@@ -6,6 +6,8 @@ import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 @CommandAlias("tphtp|teleporthandler")
@@ -16,10 +18,10 @@ public class tpHandlerToPosition extends BaseCommand {
     @Default
     @CommandCompletion("@tppoints")
     public void onTphtp(Player player, String pos){
-        if(Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("locations").getKeys(false).contains(pos)){
+        if(Objects.requireNonNull(Schwarzmarkthaendler.getInstance().getConfig().getConfigurationSection("locations")).getKeys(false).contains(pos)){
             player.sendMessage("Erfolgreich");
             SCHWARZMARKTHANDLER.tp(
-                    Bukkit.getWorld(Schwarzmarkthaendler.getInstance().getConfig().getString("locations." + pos + ".world")),
+                    Bukkit.getWorld(Objects.requireNonNull(Schwarzmarkthaendler.getInstance().getConfig().getString("locations." + pos + ".world"))),
                     Schwarzmarkthaendler.getInstance().getConfig().getDouble("locations." + pos + ".x"),
                     Schwarzmarkthaendler.getInstance().getConfig().getDouble("locations." + pos + ".y"),
                     Schwarzmarkthaendler.getInstance().getConfig().getDouble("locations." + pos + ".z"),

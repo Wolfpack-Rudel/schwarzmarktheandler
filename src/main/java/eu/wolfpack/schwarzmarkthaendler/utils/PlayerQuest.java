@@ -2,16 +2,18 @@ package eu.wolfpack.schwarzmarkthaendler.utils;
 
 public class PlayerQuest {
 
-    private String questName;
+    private final String questName;
+    private final String description;
     private String type;
-    private int min;
-    private int points;
+    private final int min;
+    private final int points;
     private String material;
     private int max;
     private boolean enabled;
 
-    public PlayerQuest(String questName, String type, int min, int points, String material, int max, boolean enabled) {
+    public PlayerQuest(String questName, String description, String type, int min, int points, String material, int max, boolean enabled) {
         this.questName = questName;
+        this.description = description;
         this.type = type;
         this.min = min;
         this.points = points;
@@ -32,10 +34,6 @@ public class PlayerQuest {
         return questName;
     }
 
-    public void setQuestName(String questName) {
-        this.questName = questName;
-    }
-
     public String getType() {
         return type;
     }
@@ -48,16 +46,8 @@ public class PlayerQuest {
         return min;
     }
 
-    public void setMin(int min) {
-        this.min = min;
-    }
-
     public int getPoints() {
         return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public String getMaterial() {
@@ -74,5 +64,9 @@ public class PlayerQuest {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

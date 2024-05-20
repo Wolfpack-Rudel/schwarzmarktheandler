@@ -3,14 +3,18 @@ package eu.wolfpack.schwarzmarkthaendler.listener;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import eu.wolfpack.schwarzmarkthaendler.utils.ItemBuilder;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayQuests;
+import eu.wolfpack.schwarzmarkthaendler.utils.PlayerQuest;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
+
 import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 
 import static eu.wolfpack.schwarzmarkthaendler.Enums.Inventorys.*;
 import static eu.wolfpack.schwarzmarkthaendler.Enums.Items.*;
@@ -29,118 +33,204 @@ public class inventoryInteract implements Listener {
                 event.getWhoClicked().openInventory(ShopMenu.getInv());
             } else if (event.getCurrentItem().equals(QUEST.getItem())) {
                 event.setCancelled(true);
-                Inventory inv = ChoseQuestOreShop.getInv();
-                for (int i = 0; i < ChoseQuestOreShop.getSize()-1; i++) {
+                Inventory inv = QuestMenu.getInv();
+                for (int i = 0; i < QuestMenu.getSize(); i++) {
                     inv.setItem(i, PLACEHOLDER.getItem());
                 }
 
                 PlayQuests playQuest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId());
 
-                ItemBuilder itemq1 = new ItemBuilder(Material.valueOf(playQuest.getPq1().getMaterial()));
-                ItemBuilder itemq2 = new ItemBuilder(Material.valueOf(playQuest.getPq2().getMaterial()));
-                ItemBuilder itemq3 = new ItemBuilder(Material.valueOf(playQuest.getPq3().getMaterial()));
+                ItemBuilder itemq1;
+                ItemBuilder itemq2;
+                ItemBuilder itemq3;
+                ItemBuilder statusq1;
+                ItemBuilder statusq2;
+                ItemBuilder statusq3;
+
+                if(playQuest.getPq1().getType().equals("KILL")){
+                    itemq1 = new ItemBuilder(Material.valueOf(playQuest.getPq1().getMaterial() + "_SPAWN_EGG"));
+                }else{
+                    itemq1 = new ItemBuilder(Material.valueOf(playQuest.getPq1().getMaterial()));
+                }
+
+                if(playQuest.getPq2().getType().equals("KILL")){
+                    itemq2 = new ItemBuilder(Material.valueOf(playQuest.getPq2().getMaterial() + "_SPAWN_EGG"));
+                }else{
+                    itemq2 = new ItemBuilder(Material.valueOf(playQuest.getPq2().getMaterial()));
+                }
+
+                if(playQuest.getPq3().getType().equals("KILL")){
+                    itemq3 = new ItemBuilder(Material.valueOf(playQuest.getPq3().getMaterial() + "_SPAWN_EGG"));
+                }else{
+                    itemq3 = new ItemBuilder(Material.valueOf(playQuest.getPq3().getMaterial()));
+                }
 
                 if(playQuest.getPq1().isEnabled()){
-                    //itemq1.addEnchantments(Map.of(Enchantment.DURABILITY, 1));
+                    statusq1 = ENABLED.getItemBuilder();
+                }else{
+                    statusq1 = DISABLED.getItemBuilder();
                 }
 
                 if(playQuest.getPq2().isEnabled()){
-                    //itemq2.addEnchantments(Map.of(Enchantment.DURABILITY, 1));
+                    statusq2 = ENABLED.getItemBuilder();
+                }else{
+                    statusq2 = DISABLED.getItemBuilder();
                 }
 
                 if(playQuest.getPq3().isEnabled()){
-                    //itemq3.addEnchantments(Map.of(Enchantment.DURABILITY, 1));
+                    statusq3 = ENABLED.getItemBuilder();
+                }else{
+                    statusq3 = DISABLED.getItemBuilder();
+                }
+
+                itemq1.setDisplayname(color(playQuest.getPq1().getQuestName()));
+                itemq2.setDisplayname(color(playQuest.getPq2().getQuestName()));
+                itemq3.setDisplayname(color(playQuest.getPq3().getQuestName()));
+
+                if(playQuest.getPq1().getMin() == playQuest.getPq1().getMax()){
+                    itemq1.setLore(
+                            color("&l&2Erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq1().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq1().getPoints() + " &r&aPunkte")
+                    );
+                }else{
+                    itemq1.setLore(
+                            color("&l&4Nicht erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq1().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq1().getPoints() + " &r&aPunkte")
+                    );
+                }
+
+                if(playQuest.getPq2().getMin() == playQuest.getPq2().getMax()){
+                    itemq2.setLore(
+                            color("&l&2Erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq2().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq2().getPoints() + " &r&aPunkte")
+                    );
+                }else{
+                    itemq2.setLore(
+                            color("&l&4Nicht erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq2().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq2().getPoints() + " &r&aPunkte")
+                    );
+                }
+
+                if(playQuest.getPq3().getMin() == playQuest.getPq3().getMax()){
+                    itemq3.setLore(
+                            color("&l&2Erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq3().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq3().getPoints() + " &r&aPunkte")
+                    );
+                }else{
+                    itemq3.setLore(
+                            color("&l&4Nicht erledigt"),
+                            color("&r "),
+                            color("&7 ⇒ &r" + playQuest.getPq3().getDescription()),
+                            color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq3().getPoints() + " &r&aPunkte")
+                    );
                 }
 
                 inv.setItem(0, itemq1.build());
-                inv.setItem(8, itemq1.build());
+                inv.setItem(1, statusq1.build());
 
                 inv.setItem(9, itemq2.build());
-                inv.setItem(17, itemq2.build());
+                inv.setItem(10, statusq2.build());
 
                 inv.setItem(18, itemq3.build());
-                inv.setItem(26, itemq3.build());
+                inv.setItem(19, statusq3.build());
 
-                float quest1persentage = (playQuest.getPq1().getMin() * 100) / playQuest.getPq1().getMax();
-                float quest2persentage = (playQuest.getPq2().getMin() * 100) / playQuest.getPq2().getMax();
-                float quest3persentage = (playQuest.getPq3().getMin() * 100) / playQuest.getPq3().getMax();
+                int quest1persentage = playQuest.getPq1().getMax();
+                if(playQuest.getPq1().getMax()!=0) quest1persentage = (playQuest.getPq1().getMax() * 100) / playQuest.getPq1().getMin();
+                int quest2persentage= playQuest.getPq2().getMax();
+                if(playQuest.getPq2().getMax()!=0) quest2persentage = (playQuest.getPq2().getMax() * 100) / playQuest.getPq2().getMin();
+                int quest3persentage= playQuest.getPq3().getMax();
+                if(playQuest.getPq3().getMax()!=0) quest3persentage = (playQuest.getPq3().getMax() * 100) / playQuest.getPq3().getMin();
+
+                quest1persentage = quest1persentage + 1;
+                quest2persentage = quest2persentage + 1;
+                quest3persentage = quest3persentage + 1;
 
                 if(20 < quest1persentage){
-                    inv.setItem(2, COMPLETE_20.getItem());
+                    inv.setItem(3, COMPLETE_20.getItem());
                 }else{
-                    inv.setItem(2, INCOMPLETE_20.getItem());
+                    inv.setItem(3, INCOMPLETE_20.getItem());
                 }
                 if(40 < quest1persentage){
-                    inv.setItem(3, COMPLETE_40.getItem());
+                    inv.setItem(4, COMPLETE_40.getItem());
                 }else{
-                    inv.setItem(3, INCOMPLETE_40.getItem());
+                    inv.setItem(4, INCOMPLETE_40.getItem());
                 }
                 if(60 < quest1persentage){
-                    inv.setItem(4, COMPLETE_60.getItem());
+                    inv.setItem(5, COMPLETE_60.getItem());
                 }else{
-                    inv.setItem(4, INCOMPLETE_60.getItem());
+                    inv.setItem(5, INCOMPLETE_60.getItem());
                 }
                 if(80 < quest1persentage){
-                    inv.setItem(5, COMPLETE_80.getItem());
+                    inv.setItem(6, COMPLETE_80.getItem());
                 }else{
-                    inv.setItem(5, INCOMPLETE_80.getItem());
+                    inv.setItem(6, INCOMPLETE_80.getItem());
                 }
                 if(100 == quest1persentage){
-                    inv.setItem(6, COMPLETE_100.getItem());
+                    inv.setItem(7, COMPLETE_100.getItem());
                 }else{
-                    inv.setItem(6, INCOMPLETE_100.getItem());
+                    inv.setItem(7, INCOMPLETE_100.getItem());
                 }
 
                 if(20 < quest2persentage){
-                    inv.setItem(11, COMPLETE_20.getItem());
+                    inv.setItem(12, COMPLETE_20.getItem());
                 }else{
-                    inv.setItem(11, INCOMPLETE_20.getItem());
+                    inv.setItem(12, INCOMPLETE_20.getItem());
                 }
                 if(40 < quest2persentage){
-                    inv.setItem(12, COMPLETE_40.getItem());
+                    inv.setItem(13, COMPLETE_40.getItem());
                 }else{
-                    inv.setItem(12, INCOMPLETE_40.getItem());
+                    inv.setItem(13, INCOMPLETE_40.getItem());
                 }
                 if(60 < quest2persentage){
-                    inv.setItem(13, COMPLETE_60.getItem());
+                    inv.setItem(14, COMPLETE_60.getItem());
                 }else{
-                    inv.setItem(13, INCOMPLETE_60.getItem());
+                    inv.setItem(14, INCOMPLETE_60.getItem());
                 }
                 if(80 < quest2persentage){
-                    inv.setItem(14, COMPLETE_80.getItem());
+                    inv.setItem(15, COMPLETE_80.getItem());
                 }else{
-                    inv.setItem(14, INCOMPLETE_80.getItem());
+                    inv.setItem(15, INCOMPLETE_80.getItem());
                 }
                 if(100 == quest2persentage){
-                    inv.setItem(15, COMPLETE_100.getItem());
+                    inv.setItem(16, COMPLETE_100.getItem());
                 }else{
-                    inv.setItem(15, INCOMPLETE_100.getItem());
+                    inv.setItem(16, INCOMPLETE_100.getItem());
                 }
 
                 if(20 < quest3persentage){
-                    inv.setItem(20, COMPLETE_20.getItem());
+                    inv.setItem(21, COMPLETE_20.getItem());
                 }else{
-                    inv.setItem(20, INCOMPLETE_20.getItem());
+                    inv.setItem(21, INCOMPLETE_20.getItem());
                 }
                 if(40 < quest3persentage){
-                    inv.setItem(21, COMPLETE_40.getItem());
+                    inv.setItem(22, COMPLETE_40.getItem());
                 }else{
-                    inv.setItem(21, INCOMPLETE_40.getItem());
+                    inv.setItem(22, INCOMPLETE_40.getItem());
                 }
                 if(60 < quest3persentage){
-                    inv.setItem(22, COMPLETE_60.getItem());
+                    inv.setItem(23, COMPLETE_60.getItem());
                 }else{
-                    inv.setItem(22, INCOMPLETE_60.getItem());
+                    inv.setItem(23, INCOMPLETE_60.getItem());
                 }
                 if(80 < quest3persentage){
-                    inv.setItem(23, COMPLETE_80.getItem());
+                    inv.setItem(24, COMPLETE_80.getItem());
                 }else{
-                    inv.setItem(23, INCOMPLETE_80.getItem());
+                    inv.setItem(24, INCOMPLETE_80.getItem());
                 }
                 if(100 == quest3persentage){
-                    inv.setItem(24, COMPLETE_100.getItem());
+                    inv.setItem(25, COMPLETE_100.getItem());
                 }else{
-                    inv.setItem(24, INCOMPLETE_100.getItem());
+                    inv.setItem(25, INCOMPLETE_100.getItem());
                 }
 
                 event.getWhoClicked().openInventory(inv);
@@ -153,5 +243,216 @@ public class inventoryInteract implements Listener {
 
         }
 
+        if((event.getInventory().getSize() == QuestMenu.getSize()) && (event.getView().getTitle().equals(QuestMenu.getTitle()))){
+
+            event.setCancelled(true);
+
+            if(Objects.equals(event.getCurrentItem(), DISABLED.getItem())){
+
+                if(event.getSlot() == 1){
+
+                    Map<UUID, PlayerQuest> playerQuest = Schwarzmarkthaendler.getPlayerQuest();
+                    PlayerQuest quest = playerQuest.get(event.getWhoClicked().getUniqueId());
+
+                    PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+                    PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                    PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+
+                    if(quest.getQuestName().equals(sq1.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(1, ENABLED.getItem());
+
+                        return;
+                    }
+
+                    if(quest.getQuestName().equals(sq2.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(1, ENABLED.getItem());
+                        event.getInventory().setItem(10, DISABLED.getItem());
+
+                        return;
+                    }
+
+                    if(quest.getQuestName().equals(sq3.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq1();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(1, ENABLED.getItem());
+                        event.getInventory().setItem(19, DISABLED.getItem());
+                    }
+                }
+
+                if(event.getSlot() == 10){
+
+                    Map<UUID, PlayerQuest> playerQuest = Schwarzmarkthaendler.getPlayerQuest();
+                    PlayerQuest quest = playerQuest.get(event.getWhoClicked().getUniqueId());
+
+                    PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+                    PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+                    PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+
+                    if(quest.getQuestName().equals(sq2.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(10, ENABLED.getItem());
+
+                        return;
+                    }
+
+
+                    if(quest.getQuestName().equals(sq1.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(10, ENABLED.getItem());
+                        event.getInventory().setItem(1, DISABLED.getItem());
+
+                        return;
+                    }
+
+                    if(quest.getQuestName().equals(sq3.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq2();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(10, ENABLED.getItem());
+                        event.getInventory().setItem(19, DISABLED.getItem());
+                    }
+                }
+
+                if(event.getSlot() == 19){
+
+                    Map<UUID, PlayerQuest> playerQuest = Schwarzmarkthaendler.getPlayerQuest();
+                    PlayerQuest quest = playerQuest.get(event.getWhoClicked().getUniqueId());
+
+                    PlayerQuest sq1 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1();
+                    PlayerQuest sq2 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2();
+                    PlayerQuest sq3 = Schwarzmarkthaendler.getPlayQuestsMap().get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3();
+
+                    if(quest.getQuestName().equals(sq3.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(19, ENABLED.getItem());
+
+                        return;
+                    }
+
+                    if(quest.getQuestName().equals(sq2.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(19, ENABLED.getItem());
+                        event.getInventory().setItem(10, DISABLED.getItem());
+
+                        return;
+                    }
+
+                    if(quest.getQuestName().equals(sq1.getQuestName())){
+                        quest.setEnabled(false);
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        quest = Schwarzmarkthaendler.getPlayQuestsMap().get(event.getWhoClicked().getUniqueId()).getPq3();
+                        if(quest.getMin() == quest.getMax()) return;
+                        quest.setEnabled(true);
+
+                        playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+                        Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+                        event.getInventory().setItem(19, ENABLED.getItem());
+                        event.getInventory().setItem(1, DISABLED.getItem());
+                    }
+                }
+
+            }
+
+            if(Objects.equals(event.getCurrentItem(), ENABLED.getItem())){
+
+                Map<UUID, PlayerQuest> playerQuest = Schwarzmarkthaendler.getPlayerQuest();
+                PlayerQuest quest = playerQuest.get(event.getWhoClicked().getUniqueId());
+
+                if(event.getSlot() == 1){
+                    quest.setEnabled(false);
+                    playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+
+
+                    event.getInventory().setItem(1, DISABLED.getItem());
+                }
+
+                if(event.getSlot() == 10){
+                    quest.setEnabled(false);
+                    playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+
+
+                    event.getInventory().setItem(10, DISABLED.getItem());
+                }
+
+                if(event.getSlot() == 19){
+                    quest.setEnabled(false);
+                    playerQuest.replace(event.getWhoClicked().getUniqueId(), quest);
+
+
+                    event.getInventory().setItem(19, DISABLED.getItem());
+                }
+
+                Schwarzmarkthaendler.setPlayerQuest(playerQuest);
+
+            }
+        }
+    }
+
+    private static String color(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
     }
 }

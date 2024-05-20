@@ -29,6 +29,7 @@ public class setPlayerQuest extends BaseCommand {
                     target.getPlayer().getUniqueId(),
                     new PlayerQuest(
                             questName,
+                            null,
                             type,
                             min,
                             points,

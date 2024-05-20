@@ -1,7 +1,6 @@
 package eu.wolfpack.schwarzmarkthaendler.type;
 
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -10,6 +9,7 @@ public class killEntity {
 
     public void Handler(Player player, EntityType type){
 
+        if(Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()) == null) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getType().equals("KILL")) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMaterial().equals(type.toString())) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).isEnabled()) return;
@@ -31,7 +31,7 @@ public class killEntity {
 
         Schwarzmarkthaendler.getPlayerPoints().put(
                 player.getUniqueId(),
-                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()).intValue() +
+                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()) +
                         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getPoints());
 
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);

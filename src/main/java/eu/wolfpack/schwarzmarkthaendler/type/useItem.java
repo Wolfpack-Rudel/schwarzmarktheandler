@@ -9,6 +9,7 @@ public class useItem {
 
     public void Handler(Player player, Material material){
 
+        if(Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()) == null) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getType().equals("USEITEM")) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getMaterial().equals(material.toString())) return;
         if(!Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).isEnabled()) return;
@@ -30,7 +31,7 @@ public class useItem {
 
         Schwarzmarkthaendler.getPlayerPoints().put(
                 player.getUniqueId(),
-                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()).intValue() +
+                Schwarzmarkthaendler.getPlayerPoints().get(player.getUniqueId()) +
                         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).getPoints());
 
         Schwarzmarkthaendler.getPlayerQuest().get(player.getUniqueId()).setEnabled(false);

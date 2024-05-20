@@ -4,6 +4,8 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 import static eu.wolfpack.schwarzmarkthaendler.Enums.customVillager.SCHWARZMARKTHANDLER;
 
 @CommandAlias("sh|schowhandler")
@@ -18,7 +20,7 @@ public class findVil extends BaseCommand {
             return;
         }
 
-        player.sendMessage("Position: " + SCHWARZMARKTHANDLER.getPos().toString());
+        player.sendMessage("Position: " + Objects.requireNonNull(SCHWARZMARKTHANDLER.getPos()));
 
     }
 
