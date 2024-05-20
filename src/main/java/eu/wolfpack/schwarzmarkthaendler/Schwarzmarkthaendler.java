@@ -69,6 +69,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         String quest1 = getRand();
         PlayerQuest q1 = new PlayerQuest(
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("description"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("type"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("min"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getInt("points"),
@@ -80,6 +81,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         String quest2 = getRand();
         PlayerQuest q2 = new PlayerQuest(
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("description"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getString("type"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getInt("min"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest2)).getInt("points"),
@@ -91,6 +93,7 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
         String quest3 = getRand();
         PlayerQuest q3 = new PlayerQuest(
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getString("name"),
+                Objects.requireNonNull(getConfig().getConfigurationSection(quest1)).getString("description"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getString("type"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getInt("min"),
                 Objects.requireNonNull(getConfig().getConfigurationSection(quest3)).getInt("points"),

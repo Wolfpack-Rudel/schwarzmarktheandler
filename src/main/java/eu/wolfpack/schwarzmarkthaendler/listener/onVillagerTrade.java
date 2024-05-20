@@ -3,6 +3,7 @@ package eu.wolfpack.schwarzmarkthaendler.listener;
 import eu.wolfpack.schwarzmarkthaendler.Schwarzmarkthaendler;
 import eu.wolfpack.schwarzmarkthaendler.utils.ItemBuilder;
 import eu.wolfpack.schwarzmarkthaendler.utils.PlayQuests;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -76,6 +77,59 @@ public class onVillagerTrade implements Listener {
             }else{
                 statusq3 = DISABLED.getItemBuilder();
             }
+
+            itemq1.setDisplayname(color(playQuest.getPq1().getQuestName()));
+            itemq2.setDisplayname(color(playQuest.getPq2().getQuestName()));
+            itemq3.setDisplayname(color(playQuest.getPq3().getQuestName()));
+
+            if(playQuest.getPq1().getMin() == playQuest.getPq1().getMax()){
+                itemq1.setLore(
+                        color("&l&2Erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq1().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq1().getPoints() + " &r&aPunkte")
+                );
+            }else{
+                itemq1.setLore(
+                        color("&l&4Nicht erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq1().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq1().getPoints() + " &r&aPunkte")
+                );
+            }
+
+            if(playQuest.getPq2().getMin() == playQuest.getPq2().getMax()){
+                itemq2.setLore(
+                        color("&l&2Erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq2().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq2().getPoints() + " &r&aPunkte")
+                );
+            }else{
+                itemq2.setLore(
+                        color("&l&4Nicht erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq2().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq2().getPoints() + " &r&aPunkte")
+                );
+            }
+
+            if(playQuest.getPq3().getMin() == playQuest.getPq3().getMax()){
+                itemq3.setLore(
+                        color("&l&2Erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq3().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq3().getPoints() + " &r&aPunkte")
+                );
+            }else{
+                itemq3.setLore(
+                        color("&l&4Nicht erledigt"),
+                        color("&r "),
+                        color("&7 ⇒ &r" + playQuest.getPq3().getDescription()),
+                        color("&7 ⇒ &aErhalte &n&6" + playQuest.getPq3().getPoints() + " &r&aPunkte")
+                );
+            }
+
 
             inv.setItem(0, itemq1.build());
             inv.setItem(1, statusq1.build());
@@ -181,5 +235,9 @@ public class onVillagerTrade implements Listener {
         }
         event.setCancelled(true);
 
+    }
+
+    private static String color(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
     }
 }

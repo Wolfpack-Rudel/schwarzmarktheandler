@@ -32,6 +32,7 @@ public class TypeHandler implements Listener {
             quests.setPq1(
                     new PlayerQuest(
                             playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1().getQuestName(),
+                            playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1().getDescription(),
                             playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1().getType(),
                             playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1().getMin(),
                             playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq1().getPoints(),
@@ -42,6 +43,7 @@ public class TypeHandler implements Listener {
             );
             quests.setPq2(new PlayerQuest(
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2().getQuestName(),
+                    playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2().getDescription(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2().getType(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2().getMin(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq2().getPoints(),
@@ -51,6 +53,7 @@ public class TypeHandler implements Listener {
             ));
             quests.setPq3(new PlayerQuest(
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3().getQuestName(),
+                    playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3().getDescription(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3().getType(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3().getMin(),
                     playQuest.get(UUID.nameUUIDFromBytes("MASTER".getBytes())).getPq3().getPoints(),
