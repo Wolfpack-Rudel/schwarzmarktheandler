@@ -229,5 +229,15 @@ public final class Schwarzmarkthaendler extends JavaPlugin {
 
     public static void setPlayQuests(Map<UUID, PlayQuests> playQuestsMap) {
         Schwarzmarkthaendler.playQuestsMap = playQuestsMap;
+
+        Map<UUID, PlayerQuest> pqmap = new HashMap<>();
+
+        playQuestsMap.forEach((uuid, playQuests) -> {
+            pqmap.put(uuid, playQuests.getPq1());
+            pqmap.put(uuid, playQuests.getPq2());
+            pqmap.put(uuid, playQuests.getPq3());
+        });
+
+        Schwarzmarkthaendler.setPlayerQuest(pqmap);
     }
 }
