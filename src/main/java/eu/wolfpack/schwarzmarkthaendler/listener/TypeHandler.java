@@ -20,8 +20,6 @@ import java.util.UUID;
 
 public class TypeHandler implements Listener {
 
-    //Temporäres Quest Adden - muss entfernt werden nach Dev Arbeiten
-
     @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
 

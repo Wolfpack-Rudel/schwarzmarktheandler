@@ -1,7 +1,5 @@
 package eu.wolfpack.schwarzmarkthaendler.utils;
 
-import java.util.UUID;
-
 public class PlayQuests {
 
     private PlayerQuest pq1;
